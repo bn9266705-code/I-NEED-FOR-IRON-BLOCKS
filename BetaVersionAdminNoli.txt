@@ -1,0 +1,997 @@
+getgenv().AdminNoli = {}
+local AN = getgenv().AdminNoli
+AN.Players = game:GetService("Players")
+AN.RunService = game:GetService("RunService")
+AN.Player = AN.Players.LocalPlayer
+AN.StarterGui = game:GetService("StarterGui")
+
+AN.CONFIG = {
+    ModelUrl = "https://github.com/bn9266705-code/Admin-Settings/raw/refs/heads/main/AdminNoli.rbxm",
+    NomeModeloFoco = "Admin",
+    AnimationUrls = {
+        Idle = "https://raw.githubusercontent.com/heehegfghssgbssb-commits/Admin-Noli/main/Idle_115489433400766.rbxm",
+        Walk = "https://raw.githubusercontent.com/heehegfghssgbssb-commits/Admin-Noli/main/Walk_113784149071669.rbxm",
+        Run  = "https://raw.githubusercontent.com/heehegfghssgbssb-commits/Admin-Noli/main/Run_72803910984186.rbxm",
+        Stab = "https://github.com/bn9266705-code/Romeo/raw/refs/heads/main/M1_106334382305365.rbxm.txt",
+        Nova = "https://github.com/bn9266705-code/Romeo/raw/refs/heads/main/Nova_134803825914358.rbxm.txt",
+        ObservantIdle  = "https://github.com/bn9266705-code/Romeo/raw/refs/heads/main/ObservantIdle_117189795433895.rbxm.txt",
+        ObservantLoop  = "https://github.com/bn9266705-code/Admin-Anims-V2/raw/refs/heads/main/Observant_102651071337301.rbxm.txt",
+        StunnedStart = "https://github.com/bn9266705-code/Admin-Anims-V2/raw/refs/heads/main/inicio%20do%20stun_102404274432860.rbxm.txt",
+        StunnedLoop  = "https://github.com/bn9266705-code/Admin-Anims-V2/raw/refs/heads/main/StunnedIdle_82957495874493.rbxm.txt",
+        StunnedEnd   = "https://github.com/bn9266705-code/Admin-Anims-V2/raw/refs/heads/main/StunnedEnd_117646133836356.rbxm.txt",
+        VoidRushLoop     = "https://github.com/bn9266705-code/Admin-Anims-V2/raw/refs/heads/main/Void%20Rush%20Loop_104152391233857.rbxm.txt",
+        VoidRushDash     = "https://github.com/bn9266705-code/Admin/raw/refs/heads/main/VRIdle_101309478627323.rbxm.txt",
+        VoidRushCrash    = "https://github.com/bn9266705-code/Admin-Anims-V2/raw/refs/heads/main/Void%20Rush%20crash_72702823519842.rbxm.txt",
+        VoidRushCancel   = "https://github.com/bn9266705-code/Admin-Settings/raw/refs/heads/main/Detonation_129616216296959.rbxm%20(1).txt",
+        VoidRushEnd      = "https://github.com/bn9266705-code/Admin-Settings/raw/refs/heads/main/VRFail_134913963062912.rbxm%20(2).txt",
+        VoidRushHit      = "https://github.com/bn9266705-code/Admin-Anims-V2/raw/refs/heads/main/Void%20Rush%20Acerta%20em%20algu%C3%A9m_76966738429391.rbxm.txt",
+        VoidRushCutscene = "https://github.com/bn9266705-code/Admin/raw/refs/heads/main/VRCutscene_111743693825114.rbxm%20(1).txt",
+        ExecKiller = "https://github.com/bn9266705-code/Admin-Anims-V2/raw/refs/heads/main/ExecutionRomeo_124781639343600.rbxm.txt",
+    },
+    SoundUrls = {
+        Intro = "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Intro_Line.mp3.mpeg.mp3",
+        Outro = "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/TheAdminOutro.mp3.mpeg.mp3",
+        Ambient = "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/admin_idle_new_124800669703146_78720761489666.mp3",
+        Nova = "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/TheAdminVoidStarCATCH.mp3.mpeg.mp3",
+        VoidRushVrooom = "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/TheAdminVoidRushVrooom.mp3.mpeg.mp3",
+        VoidRushStartUp = "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/TheAdminVoidRushStartUp.mp3.mpeg.mp3",
+        VoidRushSlam = "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/TheAdminVoidRushSlam.mp3.mpeg.mp3",
+        VoidRushOuch = "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/TheAdminVoidRushOUCH.mp3.mpeg.mp3",
+        VoidRushCombo = "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/TheAdminVoidRushCOMBO1.mp3.mpeg.mp3",
+        StunOuch = "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/TheAdminStunOUCH.mp3.mpeg.mp3",
+        ObservantTP = "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/TheAdminObservantTP.mp3.mpeg.mp3",
+        ObservantStart = "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/TheAdminObservantStart.mp3.mpeg.mp3",
+        Stab = "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/TheAdminM1.mp3.mpeg.mp3",
+        Kill = "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/TheAdminKill.mp3.mpeg.mp3",
+        Chase = "https://github.com/bn9266705-code/Admin-Settings/raw/refs/heads/main/lv_0_20261111174901%20(online-audio-converter.com).mp3",
+    },
+    OffsetModelo = CFrame.new(0, 0, 0),
+    OffsetCamera = Vector3.new(0, 0, 0),
+    VelocidadeGlobal = 1.0,
+    LimiteVelocidadeCorrida = 16,
+    OnlyShowForNoli = true
+}
+
+AN.VoiceLines = {
+    Stunned = {
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_stunned_line_8.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_stunned_line_6.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_stunned_line_7.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_stunned_line_5.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_stunned_line_4.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_stunned_line_3.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_stunned_line_2.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_stunned_Line.mp3.mpeg.mp3"
+    },
+    ObservantTP = {
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Observant_tp_Line.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_post_tp_Line.mp3.mpeg.mp3"
+    },
+    NovaThrow = {
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_nova_throw_Line_3.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_nova_throw_Line_2.mp3.mpeg.mp3"
+    },
+    LMS = { "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_lms_line_1.mp3.mpeg.mp3" },
+    Kill = {
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_kill_line_3.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_kill_line_2.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Kill_line_10.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Kill_line_9.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Kill_line_8.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Kill_line_7.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Kill_line_6.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Kill_line_5.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Kill_line_4.mp3.mpeg.mp3"
+    },
+    Idle = {
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_idle_line_9.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_idle_line_8.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_idle_line_7.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_idle_line_6.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_idle_line_5.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_idle_Line_4.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_idle_Line_3.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_idle_Line_2.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_idle_Line_1.mp3.mpeg.mp3"
+    },
+    VRSlam = {
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Vr_slam_Line_4.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Vr_slam_Line_3.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Vr_slam_Line_2.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Vr_slam_Line.mp3.mpeg.mp3"
+    },
+    VoidRushing = { "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Void_Rushing_Line.mp3.mpeg.mp3" },
+    VoidRushCrash = {
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Vr_wall_hit_Line.mp3.mpeg.mp3",
+        "https://github.com/bn9266705-code/Admin-Voice-Sounds-V2/raw/refs/heads/main/Admin_Noli_Vr_wall_hit_line_2.mp3.mpeg.mp3"
+    }
+}
+AN.notify = function(title, text, duration)
+    pcall(function()
+        AN.StarterGui:SetCore("SendNotification", { Title = title, Text = text, Duration = duration or 4 })
+    end)
+end
+AN.debug = function(...) print("[AdminNoli]", ...) end
+AN.warn = function(...) warn("[AdminNoli]", ...) end
+AN.debug("PARTE 1 carregada")
+local AN = getgenv().AdminNoli
+
+AN.NOLI_ORIGINAL_VLS = {
+    ["rbxassetid://126709864631697"] = true, ["rbxassetid://77178807796146"] = true,
+    ["rbxassetid://71577922726140"] = true, ["rbxassetid://91878831552537"] = true,
+    ["rbxassetid://96946385572611"] = true, ["rbxassetid://85189564267146"] = true,
+    ["rbxassetid://133601470283097"] = true, ["rbxassetid://100966549431630"] = true,
+    ["rbxassetid://76805558726060"] = true, ["rbxassetid://110684813246558"] = true,
+    ["rbxassetid://91228266003282"] = true, ["rbxassetid://109301111857562"] = true,
+    ["rbxassetid://134916679174108"] = true, ["rbxassetid://131652936535098"] = true,
+    ["rbxassetid://85221721762115"] = true, ["rbxassetid://89355086113310"] = true,
+    ["rbxassetid://70522191793442"] = true, ["rbxassetid://80760319411525"] = true,
+    ["rbxassetid://95524724737837"] = true, ["rbxassetid://71357050276175"] = true,
+    ["rbxassetid://88353435705314"] = true, ["rbxassetid://100165796681973"] = true,
+    ["rbxassetid://89332702462626"] = true, ["rbxassetid://102491594132079"] = true,
+    ["rbxassetid://128697147712514"] = true, ["rbxassetid://114043758677169"] = true,
+    ["rbxassetid://122812329550651"] = true, ["rbxassetid://92859353537746"] = true,
+    ["rbxassetid://136380442520405"] = true, ["rbxassetid://91017967178100"] = true,
+    ["rbxassetid://97231843689550"] = true, ["rbxassetid://99921058044396"] = true,
+    ["rbxassetid://103787230519184"] = true, ["rbxassetid://129484195219781"] = true,
+    ["rbxassetid://103656172031780"] = true, ["rbxassetid://105079226220020"] = true,
+}
+AN.KILL_VL_IDS = {
+    ["rbxassetid://126709864631697"] = true, ["rbxassetid://77178807796146"] = true,
+    ["rbxassetid://71577922726140"] = true, ["rbxassetid://91878831552537"] = true,
+    ["rbxassetid://96946385572611"] = true, ["rbxassetid://85189564267146"] = true,
+    ["rbxassetid://133601470283097"] = true, ["rbxassetid://100966549431630"] = true,
+    ["rbxassetid://76805558726060"] = true, ["rbxassetid://110684813246558"] = true,
+    ["rbxassetid://91228266003282"] = true, ["rbxassetid://109301111857562"] = true,
+    ["rbxassetid://134916679174108"] = true,
+}
+AN.PartesParaEsconder = { Head = true, Torso = true, ["Left Arm"] = true, ["Right Arm"] = true, ["Left Leg"] = true, ["Right Leg"] = true }
+AN.ANIM_MAP = {
+    ["rbxassetid://106538427162796"] = { name = "Stab", looped = false, clearOnEnd = true },
+    ["rbxassetid://106334382305365"] = { name = "Stab", looped = false, clearOnEnd = true },
+    ["rbxassetid://107339108383093"] = { name = "Nova", looped = false, clearOnEnd = true },
+    ["rbxassetid://134803825914358"] = { name = "Nova", looped = false, clearOnEnd = true },
+    ["rbxassetid://125504560920616"] = { name = "IGNORE" },
+    ["rbxassetid://129941025756588"] = { name = "IGNORE" },
+    ["rbxassetid://128923537868786"] = { name = "StunnedStart", looped = false, clearOnEnd = false },
+    ["rbxassetid://122580527125278"] = { name = "StunnedLoop", looped = true, clearOnEnd = false },
+    ["rbxassetid://99164529472582"] = { name = "StunnedEnd", looped = false, clearOnEnd = true },
+    ["rbxassetid://102404274432860"] = { name = "StunnedStart", looped = false, clearOnEnd = false },
+    ["rbxassetid://82957495874493"] = { name = "StunnedLoop", looped = true, clearOnEnd = false },
+    ["rbxassetid://117646133836356"] = { name = "StunnedEnd", looped = false, clearOnEnd = true },
+    ["rbxassetid://91758760621955"] = { name = "VoidRushLoop", looped = true, clearOnEnd = false },
+    ["rbxassetid://93841120533318"] = { name = "VoidRushLoop", looped = true, clearOnEnd = false },
+    ["rbxassetid://139835501033932"] = { name = "VoidRushDash", looped = true, clearOnEnd = false },
+    ["rbxassetid://126896426760253"] = { name = "VoidRushDash", looped = true, clearOnEnd = false },
+    ["rbxassetid://114356208094580"] = { name = "VoidRushDash", looped = true, clearOnEnd = false },
+    ["rbxassetid://135884061951801"] = { name = "VoidRushDash", looped = true, clearOnEnd = false },
+    ["rbxassetid://139321362207112"] = { name = "VoidRushEnd", looped = false, clearOnEnd = true },
+    ["rbxassetid://94039555054855"] = { name = "VoidRushCrash", looped = false, clearOnEnd = true },
+    ["rbxassetid://92243093913547"] = { name = "VoidRushHit", looped = false, clearOnEnd = true },
+    ["rbxassetid://81533966558979"] = { name = "VoidRushCutscene", looped = false, clearOnEnd = true },
+    ["rbxassetid://104152391233857"] = { name = "VoidRushLoop", looped = true, clearOnEnd = false },
+    ["rbxassetid://101309478627323"] = { name = "VoidRushDash", looped = true, clearOnEnd = false },
+    ["rbxassetid://134913963062912"] = { name = "VoidRushEnd", looped = false, clearOnEnd = true },
+    ["rbxassetid://72702823519842"] = { name = "VoidRushCrash", looped = false, clearOnEnd = true },
+    ["rbxassetid://76966738429391"] = { name = "VoidRushHit", looped = false, clearOnEnd = true },
+    ["rbxassetid://111743693825114"] = { name = "VoidRushCutscene", looped = false, clearOnEnd = true },
+    ["rbxassetid://129491851057694"] = { name = "ExecKiller", looped = false, clearOnEnd = true },
+    ["rbxassetid://124781639343600"] = { name = "ExecKiller", looped = false, clearOnEnd = true },
+}
+AN.OBS_START_SERVER    = { ["rbxassetid://113357690193035"] = true, ["rbxassetid://89219468122178"] = true }
+AN.OBS_LOOP_SERVER     = { ["rbxassetid://104744456957363"] = true, ["rbxassetid://117189795433895"] = true }
+AN.OBS_TELEPORT_SERVER = { ["rbxassetid://140042539182927"] = true, ["rbxassetid://102651071337301"] = true }
+AN.SOUND_REPLACER = {
+    ["rbxassetid://95497052397746"]  = { customSound = "Intro", volume = 1.5, looped = false },
+    ["rbxassetid://117770838692510"] = { customSound = "Outro", volume = 1.5, looped = false },
+    ["rbxassetid://102261382920667"] = { customSound = "Intro", volume = 1.5, looped = false },
+    ["rbxassetid://135361916861123"] = { customSound = "Outro", volume = 1.5, looped = false },
+    ["rbxassetid://125253972523701"] = { customSound = "ObservantTP", volume = 1.5, looped = false },
+    ["rbxassetid://7112391013"]      = { customSound = "ObservantTP", volume = 1.5, looped = false },
+    ["rbxassetid://82260342194598"]  = { customSound = "Ambient", volume = 1.5, looped = true },
+    ["rbxassetid://115332398454262"] = { customSound = "StunOuch", volume = 1.5, looped = false },
+    ["rbxassetid://90768093259753"]  = { customSound = "Nova", volume = 1.5, looped = false },
+    ["rbxassetid://107347032614322"] = { customSound = "VoidRushStartUp", volume = 1.5, looped = false },
+    ["rbxassetid://103260933771149"] = { customSound = "VoidRushSlam", volume = 1.5, looped = false },
+    ["rbxassetid://77652597584455"]  = { customSound = "VoidRushOuch", volume = 1.5, looped = false },
+    ["rbxassetid://123051542178150"] = { customSound = "VoidRushCombo", volume = 1.5, looped = false },
+    ["rbxassetid://109348678063422"] = { customSound = "Stab", volume = 1.5, looped = false },
+    ["rbxassetid://78344423946580"]  = { customSound = "Kill", volume = 1.5, looped = false },
+    ["rbxassetid://5066021887"]      = { customSound = "ObservantTP", volume = 1.5, looped = false },
+    ["rbxassetid://124468317999247"] = { customSound = "ObservantStart", volume = 1.5, looped = false },
+    ["rbxassetid://82229037343524"]  = { customSound = "Chase", volume = 13.5, looped = true },
+}
+AN.VL_MAP = {
+    ["rbxassetid://113181729433092"] = "NovaThrow", ["rbxassetid://95915865330324"] = "NovaThrow",
+    ["rbxassetid://137311037418838"] = "NovaThrow", ["rbxassetid://96365581701040"] = "NovaThrow",
+    ["rbxassetid://133796700961531"] = "NovaThrow", ["rbxassetid://95524724737837"] = "NovaThrow",
+    ["rbxassetid://94625657956590"] = "VRSlam", ["rbxassetid://121075462334157"] = "VRSlam",
+    ["rbxassetid://71357050276175"] = "VRSlam", ["rbxassetid://88353435705314"] = "VRSlam",
+    ["rbxassetid://100165796681973"] = "VRSlam", ["rbxassetid://89332702462626"] = "VRSlam",
+    ["rbxassetid://137982687528939"] = "LMS", ["rbxassetid://98948024143153"] = "LMS",
+    ["rbxassetid://131652936535098"] = "LMS", ["rbxassetid://85221721762115"] = "LMS",
+    ["rbxassetid://83072444495475"] = "Stunned", ["rbxassetid://116232196710173"] = "Stunned",
+    ["rbxassetid://88370726894329"] = "Stunned", ["rbxassetid://107879423960016"] = "Stunned",
+    ["rbxassetid://95736527719744"] = "Stunned", ["rbxassetid://122453863921223"] = "Stunned",
+    ["rbxassetid://129310501521722"] = "Stunned", ["rbxassetid://136257612598822"] = "Stunned",
+    ["rbxassetid://91017967178100"] = "Stunned", ["rbxassetid://97231843689550"] = "Stunned",
+    ["rbxassetid://99921058044396"] = "Stunned",
+    ["rbxassetid://89355086113310"] = "VoidRushing", ["rbxassetid://70522191793442"] = "VoidRushing",
+    ["rbxassetid://80760319411525"] = "ObservantTP"
+}
+AN.MUTE_SET = {
+    ["rbxassetid://82915303601185"] = true, ["rbxassetid://96447341850554"] = true,
+    ["rbxassetid://73123998656688"] = true, ["rbxassetid://113409220707516"] = true,
+    ["rbxassetid://125410039586488"] = true, ["rbxassetid://124990917419304"] = true,
+    ["rbxassetid://117922290949979"] = true, ["rbxassetid://135405206334997"] = true,
+    ["rbxassetid://89786339934872"] = true
+}
+AN.STOP_IDLE_SOUNDS = {
+    Nova = true, VoidRushSlam = true, VoidRushOuch = true, VoidRushCombo = true,
+    VoidRushStartUp = true, Stab = true, Kill = true, StunOuch = true, VoidRushCrash = true, VoidRushing = true,
+}
+AN.KeyframeData = {}
+AN.AnimDurations = {}
+AN.SoundData = {}
+AN.activeSounds = {}
+AN.lastVLPlayed = {}
+AN.jointMap = {}
+AN.currentAnimName = ""
+AN.animTime = 0
+AN.isLoopingAnim = true
+AN.lastState = ""
+AN.hiddenChars = setmetatable({}, {__mode = "k"})
+AN.activeOverride = nil
+AN.overrideClearOnEnd = true
+AN.currentVoidRushState = nil
+AN.observantServerTracks = setmetatable({}, {__mode = "k"})
+AN.lastVLTime = 0
+AN.VisualModel = nil
+AN.templateModel = nil
+AN.modeloSelecionado = nil
+AN.rigRoot = nil
+AN.corpoInicial = nil
+AN.vrDashSound = nil
+AN.loadingDone = false
+for _, key in ipairs({"AN_VisualRender", "AN_Physics", "AN_CharAdded", "AN_Animator", "AN_VRAttr", "AN_Theme", "AN_VoidstarLoop"}) do
+    if getgenv()[key] then pcall(function() getgenv()[key]:Disconnect() end) getgenv()[key] = nil end
+end
+AN.debug("PARTE 2 carregada")
+local AN = getgenv().AdminNoli
+
+AN.httpGet = function(url)
+    local ok, res = pcall(function() return game:HttpGet(url) end)
+    if ok and type(res) == "string" and #res > 0 then return res end
+    ok, res = pcall(function() return game.HttpGet(url) end)
+    if ok and type(res) == "string" and #res > 0 then return res end
+    ok, res = pcall(game.HttpGet, game, url)
+    if ok and type(res) == "string" and #res > 0 then return res end
+    return nil
+end
+
+AN.LoadAnimFromUrl = function(animName, url)
+    local content = AN.httpGet(url)
+    if not content or content == "" then
+        AN.warn("HttpGet failed for anim: " .. animName)
+        return false
+    end
+    local path = "AdminNoli_" .. animName .. ".rbxm"
+    local wok = pcall(writefile, path, content)
+    if not wok then
+        AN.warn("writefile failed for anim: " .. animName)
+        return false
+    end
+    local aok, assetId = pcall(getcustomasset, path)
+    if not aok or not assetId then
+        AN.warn("getcustomasset failed for anim: " .. animName)
+        return false
+    end
+    local kfSeq
+    local okObj, resObj = pcall(game.GetObjects, game, assetId)
+    if okObj and resObj and #resObj > 0 then
+        for _, obj in ipairs(resObj) do
+            if obj:IsA("KeyframeSequence") then kfSeq = obj break end
+            for _, d in ipairs(obj:GetDescendants()) do
+                if d:IsA("KeyframeSequence") then kfSeq = d break end
+            end
+            if kfSeq then break end
+        end
+    else
+        local insert = game:GetService("InsertService")
+        local okIns, inserted = pcall(function() return insert:LoadLocalAsset(assetId) end)
+        if okIns and inserted then
+            if inserted:IsA("KeyframeSequence") then kfSeq = inserted end
+            if not kfSeq then
+                for _, d in ipairs(inserted:GetDescendants()) do
+                    if d:IsA("KeyframeSequence") then kfSeq = d break end
+                end
+            end
+        end
+    end
+    if not kfSeq then
+        AN.warn("KeyframeSequence not found for: " .. animName)
+        return false
+    end
+    local kfs = {}
+    local maxT = 0
+    for _, kf in ipairs(kfSeq:GetKeyframes()) do
+        local poseData = {}
+        local function extract(container)
+            for _, pose in ipairs(container:GetChildren()) do
+                if pose:IsA("Pose") then
+                    poseData[pose.Name] = pose.CFrame
+                    extract(pose)
+                end
+            end
+        end
+        extract(kf)
+        table.insert(kfs, {Time = kf.Time, Poses = poseData})
+        if kf.Time > maxT then maxT = kf.Time end
+    end
+    table.sort(kfs, function(a, b) return a.Time < b.Time end)
+    AN.KeyframeData[animName] = kfs
+    AN.AnimDurations[animName] = maxT
+    return true
+end
+
+AN.LoadSoundFromUrl = function(soundName, url)
+    local content = AN.httpGet(url)
+    if not content or content == "" then
+        AN.warn("HttpGet failed for sound: " .. soundName)
+        return false
+    end
+    local path = "AdminNoli_Sound_" .. soundName .. ".mp3"
+    local wok = pcall(writefile, path, content)
+    if not wok then
+        AN.warn("writefile failed for sound: " .. soundName)
+        return false
+    end
+    local aok, assetId = pcall(getcustomasset, path)
+    if not aok or not assetId then
+        AN.warn("getcustomasset failed for sound: " .. soundName)
+        return false
+    end
+    AN.SoundData[soundName] = assetId
+    return true
+end
+AN.debug("PARTE 3 carregada")
+local AN = getgenv().AdminNoli
+
+AN.stopSound = function(category)
+    local s = AN.activeSounds[category]
+    if s and s.Parent then s:Stop() s:Destroy() end
+    AN.activeSounds[category] = nil
+end
+
+AN.playVoiceline = function(category)
+    local list = AN.VoiceLines[category]
+    if not list or #list == 0 then return end
+    if AN.lastVLPlayed[category] and (os.clock() - AN.lastVLPlayed[category]) < 0.5 then return end
+    
+    for cat, s in pairs(AN.activeSounds) do
+        if s and s.IsPlaying then
+            AN.stopSound(cat)
+        end
+    end
+    
+    AN.lastVLPlayed[category] = os.clock()
+    local chosenId = list[math.random(#list)]
+    local s = Instance.new("Sound")
+    s.SoundId = chosenId
+    s.Volume = 1.5
+    
+    local tag = Instance.new("BoolValue")
+    tag.Name = "IsAdminSound"
+    tag.Parent = s
+    
+    local parent = AN.Player.Character and (AN.Player.Character:FindFirstChild("HumanoidRootPart") or AN.Player.Character) or workspace
+    s.Parent = parent
+    AN.activeSounds[category] = s
+    local cleanup = function()
+        if AN.activeSounds[category] == s then AN.activeSounds[category] = nil end
+        if s.Parent then s:Destroy() end
+    end
+    s.Ended:Once(cleanup)
+    s:Play()
+    AN.lastVLTime = os.clock()
+end
+
+AN.pickCustomKillSound = function()
+    local list = AN.VoiceLines["Kill"]
+    if list and #list > 0 then return list[math.random(#list)] end
+    return AN.SoundData["Kill"]
+end
+
+AN.setupSoundReplacer = function()
+    local function tagOnce(inst)
+        if inst:FindFirstChild("AdminNoliReplaced") then return false end
+        local tag = Instance.new("BoolValue")
+        tag.Name = "AdminNoliReplaced"
+        tag.Parent = inst
+        return true
+    end
+    local function checkSound(inst)
+        if not inst:IsA("Sound") then return end
+        local function replace()
+            if inst:FindFirstChild("IsAdminSound") then return end
+            if inst:FindFirstChild("AdminNoliReplaced") then return end
+            local id = inst.SoundId
+            local match = id:match("rbxassetid://(%d+)") or id:match("id=(%d+)")
+            if match then id = "rbxassetid://" .. match end
+            if AN.KILL_VL_IDS[id] then
+                local recent = AN.lastVLPlayed["Kill"] and (os.clock() - AN.lastVLPlayed["Kill"]) < 0.5
+                if recent then
+                    tagOnce(inst)
+                    inst.Volume = 0
+                    return
+                end
+                local customKill = AN.pickCustomKillSound()
+                if customKill then
+                    tagOnce(inst)
+                    inst.SoundId = customKill
+                    inst.Volume = 1.5
+                    local tag = Instance.new("BoolValue")
+                    tag.Name = "IsAdminSound"
+                    tag.Parent = inst
+                    AN.lastVLPlayed["Kill"] = os.clock()
+                    AN.stopSound("Idle")
+                    AN.lastVLTime = os.clock()
+                end
+                return
+            end
+            if AN.NOLI_ORIGINAL_VLS[id] or AN.MUTE_SET[id] then
+                tagOnce(inst)
+                inst.Volume = 0
+            end
+            local repl = AN.SOUND_REPLACER[id]
+            if repl and AN.SoundData[repl.customSound] then
+                tagOnce(inst)
+                inst.SoundId = AN.SoundData[repl.customSound]
+                inst.Volume = repl.volume or 1.5
+                local tag = Instance.new("BoolValue")
+                tag.Name = "IsAdminSound"
+                tag.Parent = inst
+                if repl.looped ~= nil then inst.Looped = repl.looped end
+                if AN.STOP_IDLE_SOUNDS[repl.customSound] then AN.stopSound("Idle") end
+            end
+            local vlCategory = AN.VL_MAP[id]
+            if vlCategory then
+                tagOnce(inst)
+                inst.Volume = 0
+                AN.playVoiceline(vlCategory)
+            end
+        end
+        replace()
+        inst:GetPropertyChangedSignal("SoundId"):Connect(replace)
+        inst.Played:Connect(replace)
+    end
+    for _, obj in ipairs(game:GetDescendants()) do checkSound(obj) end
+    game.DescendantAdded:Connect(checkSound)
+end
+
+AN.setupChaseReplacer = function()
+    local orig = "rbxassetid://82229037343524"
+    local themes = workspace:FindFirstChild("Themes")
+    local function check(inst)
+        if inst:IsA("Sound") and inst.SoundId == orig and AN.SoundData["Chase"] then
+            inst.SoundId = AN.SoundData["Chase"]
+            inst.Volume = 13.5
+        end
+    end
+    if themes then
+        for _, obj in ipairs(themes:GetChildren()) do check(obj) end
+        getgenv().AN_Theme = themes.ChildAdded:Connect(check)
+    end
+end
+AN.debug("PARTE 4 carregada")
+local AN = getgenv().AdminNoli
+
+AN.MapearArticulacoes = function(modelo)
+    AN.jointMap = {}
+    for _, desc in ipairs(modelo:GetDescendants()) do
+        if desc:IsA("Bone") then
+            AN.jointMap[desc.Name] = desc
+        elseif desc:IsA("Motor6D") then
+            AN.jointMap[desc.Name] = desc
+            if desc.Part1 and desc.Part1.Name ~= desc.Name and not AN.jointMap[desc.Part1.Name] then
+                AN.jointMap[desc.Part1.Name] = desc
+            end
+        end
+    end
+end
+
+AN.iniciarOverride = function(animName, looped, clearOnEnd)
+    if not animName or not AN.KeyframeData[animName] then return end
+    AN.activeOverride = animName
+    AN.overrideClearOnEnd = clearOnEnd
+    AN.currentAnimName = animName
+    AN.animTime = 0
+    AN.isLoopingAnim = looped
+    for _, joint in pairs(AN.jointMap) do
+        if joint and joint.Parent then joint.Transform = CFrame.identity end
+    end
+end
+
+AN.limparOverride = function()
+    AN.activeOverride = nil
+    AN.currentAnimName = ""
+    AN.animTime = 0
+    AN.lastState = ""
+    for _, joint in pairs(AN.jointMap) do
+        if joint and joint.Parent then joint.Transform = CFrame.identity end
+    end
+end
+
+AN.PlayAnimationRealtime = function(animName, isAction)
+    if not animName or not AN.KeyframeData[animName] then return end
+    if AN.currentAnimName == animName and not isAction then return end
+    for _, joint in pairs(AN.jointMap) do
+        if joint and joint.Parent then joint.Transform = CFrame.identity end
+    end
+    AN.currentAnimName = animName
+    AN.animTime = 0
+    AN.isLoopingAnim = not isAction
+end
+
+AN.hasActiveObservantServerTrack = function()
+    for track in pairs(AN.observantServerTracks) do
+        if track.IsPlaying then return true end
+    end
+    return false
+end
+
+AN.ProcessarKeyframesEmTempoReal = function(dt)
+    if not AN.currentAnimName or not AN.KeyframeData[AN.currentAnimName] or #AN.KeyframeData[AN.currentAnimName] == 0 then return end
+    local kfList = AN.KeyframeData[AN.currentAnimName]
+    local maxTime = AN.AnimDurations[AN.currentAnimName] or 1
+    AN.animTime = AN.animTime + (dt * AN.CONFIG.VelocidadeGlobal)
+    if AN.animTime >= maxTime then
+        if AN.isLoopingAnim then
+            AN.animTime = AN.animTime % maxTime
+        else
+            AN.animTime = maxTime
+            if AN.activeOverride then
+                if AN.activeOverride == "ObservantLoop" and AN.KeyframeData["ObservantIdle"] then
+                    if AN.hasActiveObservantServerTrack() then
+                        AN.iniciarOverride("ObservantIdle", true, false)
+                        return
+                    end
+                end
+                if AN.overrideClearOnEnd then AN.limparOverride() return end
+            else
+                AN.currentAnimName = ""
+                return
+            end
+        end
+    end
+    local kfPrev = kfList[1]
+    local kfNext = kfList[#kfList]
+    for i = 1, #kfList - 1 do
+        if AN.animTime >= kfList[i].Time and AN.animTime <= kfList[i+1].Time then
+            kfPrev = kfList[i]
+            kfNext = kfList[i+1]
+            break
+        end
+    end
+    local span = kfNext.Time - kfPrev.Time
+    local alpha = span > 0 and math.clamp((AN.animTime - kfPrev.Time) / span, 0, 1) or 0
+    for jointName, joint in pairs(AN.jointMap) do
+        if joint and joint.Parent then
+            local poseA = kfPrev.Poses[jointName]
+            local poseB = kfNext.Poses[jointName]
+            if poseA and poseB then
+                joint.Transform = poseA:Lerp(poseB, alpha)
+            elseif poseA then
+                joint.Transform = poseA
+            elseif poseB then
+                joint.Transform = poseB
+            else
+                joint.Transform = CFrame.identity
+            end
+        end
+    end
+end
+AN.debug("PARTE 5 carregada")
+local AN = getgenv().AdminNoli
+
+AN.isObservantServerId = function(id)
+    return AN.OBS_START_SERVER[id] or AN.OBS_LOOP_SERVER[id] or AN.OBS_TELEPORT_SERVER[id]
+end
+
+AN.handleAbilityAnim = function(id)
+    if AN.OBS_START_SERVER[id] or AN.OBS_LOOP_SERVER[id] then
+        if AN.KeyframeData["ObservantIdle"] then AN.iniciarOverride("ObservantIdle", true, false) end
+        return
+    end
+    if AN.OBS_TELEPORT_SERVER[id] then
+        if AN.KeyframeData["ObservantLoop"] then AN.iniciarOverride("ObservantLoop", false, false) end
+        return
+    end
+    local entry = AN.ANIM_MAP[id]
+    if not entry then return end
+    if entry.name == "IGNORE" then return end
+    
+    if entry.name == "Nova" then
+        AN.playVoiceline("NovaThrow")
+    elseif entry.name == "ExecKiller" then
+        AN.playVoiceline("Kill")
+    elseif entry.name == "VoidRushCrash" then
+        AN.stopSound("VoidRushing")
+        AN.playVoiceline("VoidRushCrash")
+    elseif entry.name == "VoidRushHit" or entry.name == "VoidRushCutscene" or entry.name == "VoidRushEnd" or entry.name == "VoidRushCancel" then
+        AN.stopSound("VoidRushing")
+    end
+    
+    if entry.name == "VoidRushHit" or entry.name == "VoidRushCrash" or entry.name == "VoidRushCutscene" or entry.name == "VoidRushEnd" or entry.name == "VoidRushCancel" then
+        if AN.vrDashSound then AN.vrDashSound:Stop() AN.vrDashSound:Destroy() AN.vrDashSound = nil end
+    end
+    AN.iniciarOverride(entry.name, entry.looped, entry.clearOnEnd)
+end
+
+AN.handleVoidRushState = function(rig, newState)
+    if newState == AN.currentVoidRushState then return end
+    local oldState = AN.currentVoidRushState
+    AN.currentVoidRushState = newState
+    if newState ~= "Dashing" and AN.vrDashSound then
+        AN.vrDashSound:Stop() AN.vrDashSound:Destroy() AN.vrDashSound = nil
+    end
+    if newState == "Charging" then
+        if AN.KeyframeData["VoidRushLoop"] then AN.iniciarOverride("VoidRushLoop", true, false) end
+    elseif newState == "Dashing" then
+        if AN.KeyframeData["VoidRushDash"] then
+            AN.iniciarOverride("VoidRushDash", true, false)
+            if not AN.vrDashSound and AN.SoundData["VoidRushVrooom"] then
+                AN.vrDashSound = Instance.new("Sound")
+                AN.vrDashSound.SoundId = AN.SoundData["VoidRushVrooom"]
+                AN.vrDashSound.Volume = 1.5
+                AN.vrDashSound.Looped = true
+                local tag = Instance.new("BoolValue")
+                tag.Name = "IsAdminSound"
+                tag.Parent = AN.vrDashSound
+                AN.vrDashSound.Parent = rig:FindFirstChild("HumanoidRootPart") or rig
+                AN.vrDashSound:Play()
+            end
+        elseif AN.KeyframeData["Run"] then
+            AN.iniciarOverride("Run", true, false)
+        end
+    elseif newState == "ChargingCancelled" then
+        AN.stopSound("VoidRushing")
+        if AN.KeyframeData["VoidRushCancel"] then AN.iniciarOverride("VoidRushCancel", false, true) end
+    elseif (newState == nil or newState == "") and (oldState == "Charging" or oldState == "ChargingCancelled") then
+        AN.stopSound("VoidRushing")
+        if oldState == "Charging" and AN.KeyframeData["VoidRushCancel"] then
+            AN.iniciarOverride("VoidRushCancel", false, true)
+        else
+            AN.limparOverride()
+        end
+    elseif newState == nil or newState == "" then
+        AN.limparOverride()
+    end
+end
+
+AN.hookAbilityAnimations = function(rig)
+    if not rig then return end
+    local humanoid = rig:FindFirstChildOfClass("Humanoid")
+    if not humanoid then return end
+    local animator = humanoid:FindFirstChildOfClass("Animator")
+    if not animator then return end
+    if getgenv().AN_Animator then getgenv().AN_Animator:Disconnect() end
+    if getgenv().AN_VRAttr then getgenv().AN_VRAttr:Disconnect() end
+    AN.currentVoidRushState = rig:GetAttribute("VoidRushState")
+    AN.observantServerTracks = setmetatable({}, {__mode = "k"})
+    getgenv().AN_Animator = animator.AnimationPlayed:Connect(function(track)
+        if not track.Animation then return end
+        local id = track.Animation.AnimationId
+        if AN.isObservantServerId(id) then
+            AN.observantServerTracks[track] = true
+            track.Stopped:Connect(function()
+                AN.observantServerTracks[track] = nil
+                task.defer(function()
+                    if not AN.hasActiveObservantServerTrack() then
+                        if AN.activeOverride == "ObservantIdle" or AN.activeOverride == "ObservantLoop" then
+                            AN.limparOverride()
+                        end
+                    end
+                end)
+            end)
+        end
+        if id == "rbxassetid://101309478627323" or id == "rbxassetid://126896426760253" or id == "rbxassetid://104152391233857" then
+            track.Stopped:Connect(function()
+                if AN.activeOverride == "VoidRushDash" or AN.activeOverride == "VoidRushLoop" then
+                    AN.limparOverride()
+                end
+            end)
+        end
+        pcall(AN.handleAbilityAnim, id)
+    end)
+    getgenv().AN_VRAttr = rig:GetAttributeChangedSignal("VoidRushState"):Connect(function()
+        pcall(AN.handleVoidRushState, rig, rig:GetAttribute("VoidRushState"))
+    end)
+end
+
+AN.esconderPartesOriginais = function(character)
+    if character.Name ~= "Noli" then return end
+    if character:GetAttribute("SkinName") ~= nil and character:GetAttribute("SkinName") ~= "" then return end
+    for _, obj in ipairs(character:GetDescendants()) do
+        if obj:IsA("BasePart") or obj:IsA("MeshPart") or obj:IsA("Decal") or obj:IsA("Texture") then
+            obj.Transparency = 1
+            obj.CastShadow = false
+            obj.LocalTransparencyModifier = 1
+        elseif obj:IsA("Sound") then
+            if not obj:FindFirstChild("IsAdminSound") then
+                obj.Volume = 0
+                obj:GetPropertyChangedSignal("Volume"):Connect(function() 
+                    if not obj:FindFirstChild("IsAdminSound") then
+                        obj.Volume = 0 
+                    end
+                end)
+            end
+        end
+    end
+    local animate = character:FindFirstChild("Animate")
+    if animate then animate:Destroy() end
+end
+
+AN.esconderNoliOriginal = function()
+    local players = workspace:FindFirstChild("Players")
+    if not players then return end
+    local killers = players:FindFirstChild("Killers")
+    if not killers then return end
+    local noli = killers:FindFirstChild("Noli")
+    if not noli then return end
+    for _, obj in ipairs(noli:GetDescendants()) do
+        if obj:IsA("BasePart") then
+            obj.Transparency = 1
+            obj.CastShadow = false
+        elseif obj:IsA("Decal") or obj:IsA("Texture") then
+            obj.Transparency = 1
+        elseif obj:IsA("Sound") then
+            if not obj:FindFirstChild("IsAdminSound") then
+                obj.Volume = 0
+            end
+        elseif obj:IsA("ParticleEmitter") or obj:IsA("Beam") or obj:IsA("Trail") or obj:IsA("Smoke") or obj:IsA("Fire") or obj:IsA("Sparkles") then
+            pcall(function() obj.Enabled = false end)
+        elseif obj:IsA("BillboardGui") or obj:IsA("SurfaceGui") or obj:IsA("Highlight") then
+            pcall(function() obj.Enabled = false end)
+        end
+    end
+end
+
+AN.startIdleSequence = function(character)
+    task.spawn(function()
+        while character.Parent and character:FindFirstChild("Humanoid") and character.Humanoid.Health > 0 do
+            local now = os.clock()
+            if now - AN.lastVLTime >= 25 then
+                AN.playVoiceline("Idle")
+            end
+            task.wait(1)
+        end
+    end)
+end
+
+AN.createVisualModelFor = function()
+    if not AN.templateModel then return end
+    if AN.VisualModel then AN.VisualModel:Destroy() end
+    AN.VisualModel = Instance.new("Model")
+    AN.VisualModel.Name = "VisualModel_Client_" .. AN.Player.Name
+    AN.VisualModel.Parent = workspace
+    local clone = AN.templateModel:Clone()
+    for _, obj in ipairs(clone:GetDescendants()) do
+        if obj:IsA("BasePart") then
+            obj.CanCollide = false
+            obj.CanTouch = false
+            obj.CanQuery = false
+            obj.Anchored = false
+            obj.Massless = true
+            local lower = string.lower(obj.Name)
+            if (lower == "humanoidrootpart" or lower == "rootpart") and not obj:IsA("MeshPart") then
+                obj.Transparency = 1
+            end
+        end
+    end
+    AN.rigRoot = clone:FindFirstChild("HumanoidRootPart") or clone:FindFirstChild("RootPart") or clone.PrimaryPart or clone:FindFirstChildWhichIsA("BasePart")
+    AN.modeloSelecionado = clone
+    AN.modeloSelecionado.Parent = AN.VisualModel
+    AN.MapearArticulacoes(AN.modeloSelecionado)
+    AN.lastState = ""
+    AN.currentAnimName = ""
+    AN.activeOverride = nil
+    if AN.KeyframeData["Idle"] then AN.PlayAnimationRealtime("Idle", false) end
+end
+
+AN.setupCharacter = function(character)
+    if not character or not character:FindFirstChild("HumanoidRootPart") then return end
+    AN.corpoInicial = character
+    AN.esconderPartesOriginais(character)
+    AN.createVisualModelFor()
+    AN.lastVLTime = os.clock()
+    AN.startIdleSequence(character)
+end
+AN.debug("PARTE 6 carregada")
+local AN = getgenv().AdminNoli
+local RunService = AN.RunService
+local Player = AN.Player
+
+local function getModelFromGithub()
+    local content = AN.httpGet(AN.CONFIG.ModelUrl)
+    if not content or #content == 0 then return nil end
+    local path = "AdminNoli_Model_Download.rbxm"
+    if not pcall(writefile, path, content) then return nil end
+    local assetId = getcustomasset(path)
+    local insert = game:GetService("InsertService")
+    local okIns, ins = pcall(function() return insert:LoadLocalAsset(assetId) end)
+    if okIns and ins then return ins end
+    local okObj, resObj = pcall(game.GetObjects, game, assetId)
+    if okObj and resObj and #resObj > 0 then return resObj[1] end
+    return nil
+end
+
+task.spawn(function()
+    task.wait(1)
+    AN.notify("IRON BLOCKS", "Loading Admin Noli...", 6)
+    
+    local downloaded = getModelFromGithub()
+    if not downloaded then
+        AN.notify("IRON BLOCKS", "ERROR: Model failed to download!", 10)
+        return
+    end
+    
+    local target = downloaded:FindFirstChild(AN.CONFIG.NomeModeloFoco, true) or downloaded
+    if not target then
+        AN.notify("IRON BLOCKS", "ERROR: Model is empty!", 10)
+        return
+    end
+    
+    local clone = target:Clone()
+    local h = clone:FindFirstChildOfClass("Humanoid")
+    if h then h:Destroy() end
+    AN.templateModel = clone
+    AN.notify("IRON BLOCKS", "Model loaded.", 3)
+    task.wait(0.3)
+    
+    local animTotal, animOk = 0, 0
+    for _ in pairs(AN.CONFIG.AnimationUrls) do animTotal = animTotal + 1 end
+    for animName, url in pairs(AN.CONFIG.AnimationUrls) do
+        if AN.LoadAnimFromUrl(animName, url) then animOk = animOk + 1 end
+        task.wait(0.02)
+    end
+    AN.notify("IRON BLOCKS", "Animations: " .. animOk .. "/" .. animTotal, 3)
+    task.wait(0.3)
+    
+    local soundTotal, soundOk = 0, 0
+    for _ in pairs(AN.CONFIG.SoundUrls) do soundTotal = soundTotal + 1 end
+    for sName, sUrl in pairs(AN.CONFIG.SoundUrls) do
+        if AN.LoadSoundFromUrl(sName, sUrl) then soundOk = soundOk + 1 end
+        task.wait(0.02)
+    end
+    AN.notify("IRON BLOCKS", "Sounds: " .. soundOk .. "/" .. soundTotal, 3)
+    task.wait(0.3)
+    
+    local vlTotal, vlOk = 0, 0
+    for category, list in pairs(AN.VoiceLines) do
+        for _ in ipairs(list) do vlTotal = vlTotal + 1 end
+        for i, url in ipairs(list) do
+            local vlName = "VL_" .. category .. "_" .. i
+            if AN.LoadSoundFromUrl(vlName, url) then
+                list[i] = AN.SoundData[vlName]
+                vlOk = vlOk + 1
+            end
+        end
+    end
+    AN.notify("IRON BLOCKS", "Voicelines: " .. vlOk .. "/" .. vlTotal, 3)
+    task.wait(0.3)
+    
+    AN.setupSoundReplacer()
+    AN.setupChaseReplacer()
+    
+    task.spawn(function()
+        while true do
+            pcall(AN.esconderNoliOriginal)
+            task.wait(0.5)
+        end
+    end)
+    
+    task.spawn(function()
+        while true do
+            task.wait(0.1)
+            local ingame = workspace:FindFirstChild("Map") and workspace.Map:FindFirstChild("Ingame")
+            if ingame then
+                local voidstar = ingame:FindFirstChild("Voidstar")
+                if voidstar and voidstar:IsA("BasePart") then
+                    voidstar.Transparency = 1
+                end
+            end
+        end
+    end)
+    
+    local char = Player.Character
+    if char then pcall(AN.setupCharacter, char) end
+    
+    AN.notify("NO IRON BLOCKS? ):<", "Wait, you'll be the Killer.", 5)
+    AN.debug("=== LOADING COMPLETE ===")
+end)
+
+getgenv().AN_VisualRender = RunService.PreRender:Connect(function(dt)
+    local corpo = Player.Character
+    if not corpo or not corpo.Parent then
+        if AN.VisualModel and AN.VisualModel.Parent then AN.VisualModel.Parent = nil end
+        return
+    end
+    if corpo ~= AN.corpoInicial then
+        AN.setupCharacter(corpo)
+        task.spawn(function() task.wait(0.5) AN.hookAbilityAnimations(corpo) end)
+        return
+    end
+    local humanoid = corpo:FindFirstChildOfClass("Humanoid")
+    if not humanoid or humanoid.Health <= 0 then
+        if AN.VisualModel and AN.VisualModel.Parent then AN.VisualModel.Parent = nil end
+        return
+    end
+    
+    local isNoli = corpo.Name == "Noli"
+    local skin = corpo:GetAttribute("SkinName")
+    local semSkin = (skin == nil or skin == "")
+    
+    if not isNoli or not semSkin then
+        if AN.VisualModel and AN.VisualModel.Parent then AN.VisualModel.Parent = nil end
+        return
+    end
+
+    if AN.VisualModel and not AN.VisualModel.Parent then
+        AN.VisualModel.Parent = workspace
+        AN.lastState = ""
+    end
+    
+    AN.esconderPartesOriginais(corpo)
+
+    local atualRoot = corpo:FindFirstChild("HumanoidRootPart")
+    if not atualRoot or not AN.rigRoot or not AN.modeloSelecionado then return end
+    
+    humanoid.CameraOffset = AN.CONFIG.OffsetCamera
+    local rootCFrame = atualRoot.CFrame
+    local _, ry, _ = rootCFrame:ToOrientation()
+    AN.rigRoot.CFrame = CFrame.new(rootCFrame.Position) * CFrame.Angles(0, ry, 0) * AN.CONFIG.OffsetModelo
+    
+    if not AN.activeOverride then
+        local velReal = atualRoot.AssemblyLinearVelocity
+        local velPlana = math.sqrt(velReal.X^2 + velReal.Z^2)
+        local ws = humanoid.WalkSpeed
+        local desired
+        
+        if velPlana > 1.8 then
+            if velPlana >= AN.CONFIG.LimiteVelocidadeCorrida or ws >= AN.CONFIG.LimiteVelocidadeCorrida then
+                desired = "Run"
+            else
+                desired = "Walk"
+            end
+        else
+            desired = "Idle"
+        end
+        
+        if AN.lastState ~= desired and AN.KeyframeData[desired] then
+            AN.lastState = desired
+            AN.PlayAnimationRealtime(desired, false)
+        end
+    end
+    AN.ProcessarKeyframesEmTempoReal(dt)
+end)
+
+getgenv().AN_Physics = RunService.Stepped:Connect(function()
+    if AN.modeloSelecionado then
+        for _, obj in ipairs(AN.modeloSelecionado:GetChildren()) do
+            if obj:IsA("BasePart") then obj.CanCollide = false end
+        end
+    end
+end)
+
+getgenv().AN_CharAdded = Player.CharacterAdded:Connect(function(c)
+    if AN.VisualModel then pcall(function() AN.VisualModel:Destroy() end) AN.VisualModel = nil end
+    AN.limparOverride()
+    AN.currentVoidRushState = nil
+    AN.observantServerTracks = setmetatable({}, {__mode = "k"})
+    task.wait(0.1)
+    AN.setupCharacter(c)
+    task.wait(0.5)
+    AN.hookAbilityAnimations(c)
+end)
+AN.debug("PARTE 7 carregada. Script completo.")
